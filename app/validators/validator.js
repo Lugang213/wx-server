@@ -11,6 +11,7 @@ class PositiveIntegerValidator extends LinValidator{
              
     }
 }
+// 注册验证
 class RegisterValidator extends LinValidator {
     constructor() {
         super()
@@ -32,7 +33,6 @@ class RegisterValidator extends LinValidator {
             }),
         ]
     }
-
     validatePassword(vals) {
         const psw1 = vals.body.password1
         const psw2 = vals.body.password2
@@ -40,7 +40,6 @@ class RegisterValidator extends LinValidator {
             throw new Error('两个密码必须相同')
         }
     }
-
     async validateEmail(vals) {
         const email = vals.body.email
         const user = await User.findOne({
@@ -52,8 +51,8 @@ class RegisterValidator extends LinValidator {
             throw new Error('email已存在')
         }
     }
-
 }
+// token验证
 class TokenValidator extends LinValidator{
     constructor(){
         super()
@@ -80,6 +79,7 @@ class TokenValidator extends LinValidator{
         }
     }
 }
+
 module.exports = {
     PositiveIntegerValidator,
     RegisterValidator,
