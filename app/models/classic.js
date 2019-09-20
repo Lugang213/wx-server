@@ -10,7 +10,7 @@ const classsicFields = {
     pubdate: Sequelize.DATEONLY,
     fav_nums: Sequelize.INTEGER,
     title: Sequelize.STRING,
-    type: Sequelize.TINYINT,
+    type: Sequelize.INTEGER,
 }
 // movie表
 class Movie extends Model{}
