@@ -1,20 +1,22 @@
 const {flatten} = require('lodash')
 const {Op} = require('sequelize')
 const{Movie,Music,Sentence} = require('../models/classic')
-const {Favor} = require('./favor')
 
 class Art{
     constructor(art_id, type){
         this.art_id = art_id,
         this.type = type
     }
-    // getDetail(uid){
-    //      const art = await Art.getData(this.art_id, this.type)
-    //      if (!art) {
-    //          throw new global.errs.NotFound()
-    //      }
-    //      const like = await Favor.userLikeIt(this.art_id, this.type, uid)
-    // }
+    // get detail 获取某一期期刊的详细信息
+    async getDetail(uid){
+         const art = await Art.getData(this.art_id, this.type)
+         if (!art) {
+             throw new global.errs.NotFound()
+         }
+         const { Favor} = require('./favor')
+         const like = await Favor.userLikeIt(this.art_id, this.type, uid)
+         return {art,like_status:like}
+    }
     // artInfoList 在favor.js中查询到的数组
     static async getList(artInfoList){
         const artInfoObj = {
@@ -64,7 +66,7 @@ class Art{
         }
         return arts
     }
-
+    // 获取某一期期刊的点赞信息
     static async getData(art_id,type){
         let art = null
         const finder = {where: {id: art_id}}
