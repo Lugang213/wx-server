@@ -11,14 +11,12 @@ const router = new Router({
 
 // 获取最新一期期刊
 router.get('/latest', new Auth().m, async (ctx, next) => {
-    const flow = await Flow.findOne({
-        order:[
-            ['index','DESC']
-        ]
-    })
+    const flow = await Flow.findOne({order:[['index','DESC']]})
     const art = await Art.getData(flow.art_id,flow.type)
+    const likeLatest = await Favor.userLikeIt(flow.art_id, flow.type, ctx.auth.uid)
     // art.index = flow.index
-    art.setDataValue('index',flow.index)
+    art.setDataValue('index', flow.index)
+    art.setDataValue('like_status', likeLatest)
     ctx.body = art
 })
 // 获取某一期期刊的点赞信息
