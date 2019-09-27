@@ -20,7 +20,14 @@ class Book extends Model{
         const result = await axios.get(url)
         return result.data
     }
+    // 我喜欢书籍数量
+    static async getMyFavorBookCount(uid) {
+        const count = await Favor.count({where: {type: 400, uid}})
+        return count
+    }
     // 
+
+
 }
 
 Book.init({

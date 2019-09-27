@@ -42,6 +42,12 @@ class Favor extends Model{
         if(!arts){throw new global.errs.NotFound()}
         return await Art.getList(arts)
     }
+    // 书籍点赞情况
+    static async getBookFavor(uid, bookID){
+        const favorNums = await Favor.count({where:{art_id:bookID,type:400}})
+        const myFavor = await Favor.findOne({where: {art_id:bookID,uid,type:400}})
+        return {fav_nums: favorNums,like_status: myFavor?1:0}
+    }
 }
 
 Favor.init({

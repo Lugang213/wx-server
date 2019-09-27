@@ -152,6 +152,18 @@ class SearchValidator extends LinValidator{
         ]
     }
 }
+// 书籍短评
+class AddShortCommentValidator extends PositiveIntegerValidator{
+    constructor(){
+        super()
+        this.content = [
+            new Rule('isLength', '必须1~12个字符之间', {
+                min: 1,
+                max: 12
+            })
+        ]
+    }
+}
 
 module.exports = {
     PositiveIntegerValidator,
@@ -160,5 +172,6 @@ module.exports = {
     NotEmptyValidator,
     LikeValidator,
     ClassicValidator,
-    SearchValidator
+    SearchValidator,
+    AddShortCommentValidator
 }
