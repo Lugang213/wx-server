@@ -2,6 +2,7 @@ const {Sequelize,Model} = require('sequelize')
 const util = require('util')
 const axios = require('axios')
 const {sequelize} = require('../../core/db')
+const {Favor} = require('../models/favor')
 
 class Book extends Model{
     constructor(id){
