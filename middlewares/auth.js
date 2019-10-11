@@ -1,3 +1,4 @@
+/*  */
 const basicAuth = require('basic-auth')
 const jwt = require('jsonwebtoken')
 class Auth {

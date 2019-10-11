@@ -36,7 +36,6 @@ router.post('/verify', async (ctx)=>{
     ctx.body ={
         result
     }
-
 })
 
 async function emailLogin(account,secret) {

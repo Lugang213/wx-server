@@ -10,7 +10,7 @@ class Favor extends Model{
         if (favor) {throw new global.errs.LikeError()}
         return sequelize.transaction(async t => {
             await Favor.create({art_id,type,uid}, {transaction: t})
-            const art = await Art.getData(art_id,type)
+            const art = await Art.getData(art_id,type,false)
             await art.increment('fav_nums', {by: 1,transaction: t
             })
         })
@@ -24,7 +24,7 @@ class Favor extends Model{
         return sequelize.transaction(async t => {
             // force true 物理删除
             await favor.destroy({force:true,transaction: t})
-            const art = await Art.getData(art_id, type)
+            const art = await Art.getData(art_id, type,false)
             await art.decrement('fav_nums', {by: 1,transaction: t})
         })
     }

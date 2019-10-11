@@ -19,7 +19,7 @@ router.get('/hot_list', async ctx => {
     const books = await HotBook.getAll()
     ctx.body = books
 })
-
+// 书籍详情
 router.get('/:id/detail', async ctx => {
     const v =await new PositiveIntegerValidator().validate(ctx)
     const book = new Book()

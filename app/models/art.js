@@ -60,7 +60,7 @@ class Art{
                 break
             case 400:
                 arts = await Book.findAll(finder)
-            break
+                break
             default:
                 break
         }
@@ -76,11 +76,13 @@ class Art{
                 break
             case 200:
                 art = await Music.findOne(finder)
-            break
+                break
             case 300:
                 art = await Sentence.findOne(finder)
-            break
-            
+                break
+            case 400:
+                art = await Book.findOne(finder)
+                break
             default:
                 break
         }
