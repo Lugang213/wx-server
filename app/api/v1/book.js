@@ -1,10 +1,6 @@
 const Router = require('koa-router')
 const {HotBook} = require('../../models/hot-book')
-const {
-    PositiveIntegerValidator,
-    SearchValidator,
-    AddShortCommentValidator
-} = require('../../validators/validator')
+const {PositiveIntegerValidator,SearchValidator,AddShortCommentValidator} = require('../../validators/validator')
 const {Book} = require('../../models/book')
 const {Favor} = require('../../models/favor')
 const {Auth} = require('../../../middlewares/auth')

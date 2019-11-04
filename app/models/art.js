@@ -10,18 +10,16 @@ class Art{
     // get detail 获取某一期期刊的详细信息
     async getDetail(uid){
          const art = await Art.getData(this.art_id, this.type)
-         if (!art) {
-             throw new global.errs.NotFound()
-         }
+         if (!art) {throw new global.errs.NotFound()}
          const { Favor} = require('./favor')
          const like = await Favor.userLikeIt(this.art_id, this.type, uid)
          return {art,like_status:like}
     }
     // artInfoList 在favor.js中查询到的数组
-    static async getList(artInfoList){
+    static async getList(artInfoList){ 
         const artInfoObj = {
             100:[], // type=100的 ID
-            200:[],
+            200:[], // 
             300:[]
         }
         // 数组循环用of 
@@ -87,7 +85,7 @@ class Art{
                 break
         }
         if (art && art.image) {
-            let imgUrl = art.getDataValue.image
+            let imgUrl = art.dataValues.image
             art.dataValues.image = global.config.host + imgUrl
         }
         return art

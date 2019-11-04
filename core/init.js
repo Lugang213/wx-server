@@ -1,9 +1,11 @@
 const Router = require('koa-router')
 const requireDirectory = require('require-directory')
 
+// 定义一个类InitManager 初始化管理器
 class InitManager{
+    // 定义一个静态方法initCore 入口总方法
     static initCore(app){
-        // 入口方法
+        // 
         InitManager.app = app
         InitManager.initLoadRouters()
         InitManager.loadHttpException()
@@ -14,6 +16,7 @@ class InitManager{
         const config = require(configPath)
         global.config = config
     }
+    // initLoadRouter 加载全部的路由
     static initLoadRouters() {
         const apiDirectory = `${process.cwd()}/app/api`
         requireDirectory(module, apiDirectory, {
